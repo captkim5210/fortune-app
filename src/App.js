@@ -72,7 +72,7 @@ function GunghapScreen() {
     if (!mySign || !partnerSign) { setError("두 별자리를 모두 선택해주세요."); return; }
     setLoading(true); setError(""); setResult(null);
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/fortune", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514", max_tokens: 1000,
@@ -137,7 +137,7 @@ export default function FortuneApp() {
     setLoading(true); setError(null); setFortune(null);
     try {
       const catObj = CATEGORIES.find(c => c.id === cat);
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/fortune", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514", max_tokens: 1000,
